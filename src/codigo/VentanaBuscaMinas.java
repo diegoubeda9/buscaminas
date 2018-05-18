@@ -11,7 +11,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,8 +24,8 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
     
     int filas = 15;
     int columnas = 20;
-    
-    
+    Icon bomba = new ImageIcon(getClass().getResource("/images/bomba.png"));
+    Icon bandera = new ImageIcon(getClass().getResource("/images/bandera.png"));
     
     
     Boton[][] arrayBotones = new Boton[filas][columnas];
@@ -70,7 +73,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
     private void botonPulsado(MouseEvent e){
         Boton miBoton = (Boton) e.getComponent();
         if(e.getButton()==MouseEvent.BUTTON3 && miBoton.isEnabled()){
-            miBoton.setText("?");
+            miBoton.setIcon(bandera);
 
         } if(e.getButton()== MouseEvent.BUTTON1 && miBoton.getText().equals("")){
  
@@ -95,7 +98,8 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
             }
 
         }
-    
+//        JOptionPane.showMessageDialog(null, "has perdido");
+//        getContentPane().setEnabled(true);
     }
     
     
@@ -152,7 +156,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
                     }
                 }
                 else {
-                   arrayBotones[i][j].setText("*");
+                   arrayBotones[i][j].setIcon(bomba);
                  
                 }
                  
@@ -192,6 +196,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
             //seleccionada ya hay una mina, porque en ese caso tiene que
             //buscar otra
             arrayBotones[f][c].setMina(1);
+            
            
             
             
@@ -250,12 +255,12 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
                   
               }
               //esquina izq abajo
-              if((i==filas-1)&&(j==columnas-1)){
-                   minas += arrayBotones[i-1][j].getMina();//la mina arriba
-                   minas += arrayBotones[i-1][j-1].getMina();//la mina de arriba izq
-                   minas += arrayBotones[i][j-1].getMina();//la mina de la izq
-                  
-              }
+//              if((i==filas-1)&&(j==columnas-1)){
+//                   minas += arrayBotones[i-1][j].getMina();//la mina arriba
+//                   minas += arrayBotones[i-1][j-1].getMina();//la mina de arriba izq
+//                   minas += arrayBotones[i][j-1].getMina();//la mina de la izq
+//                  
+//              }
               
               //borde arriba
               if((i==0)&&(j>0)&&(j<columnas-1)){
@@ -382,6 +387,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new VentanaBuscaMinas().setVisible(true);
             }
         });

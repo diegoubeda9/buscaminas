@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ALejandroLago
+ * @author Diego Ubeda-Romero Alonso
  */
 public class VentanaBuscaMinas extends javax.swing.JFrame {
     
@@ -65,7 +65,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
         }
        
         
-        ponMinas(30);
+        ponMinas(10);
         cuentaMinas();
         
     }
@@ -80,7 +80,8 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
             if(miBoton.getMina()==1){
                
                 todoVisible();
-                
+                JOptionPane.showMessageDialog(null, "has perdido");
+       getContentPane().setEnabled(true);
                 
                 
                 
@@ -121,7 +122,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
                                       arrayBotones[boton.getI() + k][boton.getJ() + m].setEnabled(false);
                                       casillasCero(arrayBotones[boton.getI() + k][boton.getJ() + m]);
                                       
-                                    }else if(arrayBotones[boton.getI() + k][boton.getJ() + m].getNumeroMinasAlrededor() != 0){
+                                    }else {
                                         arrayBotones[boton.getI() + k][boton.getJ() + m].setEnabled(false);
                                        arrayBotones[boton.getI() + k][boton.getJ() + m]
                                                .setText(String.valueOf(arrayBotones[boton.getI() + k][boton.getJ() + m].getNumeroMinasAlrededor()));
@@ -135,7 +136,6 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
 
 
         }
-        
         
         
         
@@ -155,16 +155,19 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
                 
                     }
                 }
-                else {
+                if (arrayBotones[i][j].getMina() == 1) {
                    arrayBotones[i][j].setIcon(bomba);
-                 
+                   
+//                JOptionPane.showMessageDialog(null, "has perdido");
+////        getContentPane().setEnabled(true);
+       
                 }
                  
                 
                 
                 
                 
-                arrayBotones[i][j].setEnabled(false);
+//                arrayBotones[i][j].setEnabled(false);
                 
             
                 
@@ -254,13 +257,7 @@ public class VentanaBuscaMinas extends javax.swing.JFrame {
                    minas += arrayBotones[i][j+1].getMina();//la mina de la derecha
                   
               }
-              //esquina izq abajo
-//              if((i==filas-1)&&(j==columnas-1)){
-//                   minas += arrayBotones[i-1][j].getMina();//la mina arriba
-//                   minas += arrayBotones[i-1][j-1].getMina();//la mina de arriba izq
-//                   minas += arrayBotones[i][j-1].getMina();//la mina de la izq
-//                  
-//              }
+              
               
               //borde arriba
               if((i==0)&&(j>0)&&(j<columnas-1)){
